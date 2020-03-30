@@ -19,4 +19,9 @@ class MathTest {
     fun increment_isCorrect() {
         assertEquals(3, 2 + 1)
     }
+
+    @Test
+    fun division_isCorrect() {
+        assertEquals(6, 18 / 3)
+    }
 }
