@@ -14,4 +14,9 @@ class MathTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+    @Test
+    fun increment_isCorrect() {
+        assertEquals(3, 2 + 1)
+    }
 }
