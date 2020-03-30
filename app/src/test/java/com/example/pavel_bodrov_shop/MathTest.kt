@@ -29,4 +29,9 @@ class MathTest {
     fun multiplication_isCorrect() {
         assertEquals(6, 2 * 3)
     }
+
+    @Test
+    fun subtraction_isCorrect() {
+        assertEquals(6, 8 - 2)
+    }
 }
