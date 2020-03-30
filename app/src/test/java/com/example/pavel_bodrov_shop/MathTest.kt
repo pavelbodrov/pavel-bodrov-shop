@@ -24,4 +24,9 @@ class MathTest {
     fun division_isCorrect() {
         assertEquals(6, 18 / 3)
     }
+
+    @Test
+    fun multiplication_isCorrect() {
+        assertEquals(6, 2 * 3)
+    }
 }
