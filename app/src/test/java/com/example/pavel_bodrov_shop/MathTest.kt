@@ -34,4 +34,12 @@ class MathTest {
     fun subtraction_isCorrect() {
         assertEquals(6, 8 - 2)
     }
+
+    @Test
+    fun example() {
+        val iphoneCase = object {
+
+        }
+//        assertEquals(6, 8 - 2)
+    }
 }

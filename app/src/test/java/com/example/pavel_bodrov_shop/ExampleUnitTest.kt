@@ -3,6 +3,7 @@ package com.example.pavel_bodrov_shop
 import org.junit.Test
 
 import org.junit.Assert.*
+import kotlin.math.truncate
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,21 +12,26 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
 
-    fun formatPrice(price: Double, units: String = "Шт.", discount: Int): String {
-        val result: String
+    @Test
+    fun productPrinterTest() {
+        val iphoneCase = Product(price = 123.5, discount = 30)
 
-        if (discount > 0) {
-            result = "${price - price * discount / 100}/$units (скидка $discount%)"
-        }
-        else {
-            result = "$price/$units"
-        }
-        return result
+        val pricePrinter: PricePrinter = TerminalPricePrinter()
+
+        pricePrinter.print(iphoneCase)
     }
 
-
     @Test
-    fun runTest() {
-        print(formatPrice(price = 274.0, discount = 5))
+    fun cartPrinterTest() {
+        val iphoneCase = Product(price = 123.5, discount = 30)
+
+        val pricePrinter: PricePrinter = TerminalPricePrinter()
+        val testCart = Cart(listOf(
+            Product(price = 123.5, discount = 30),
+            Product(price = 256.17, discount = 5),
+            Product(price = 3967.0, discount = 17))
+        )
+
+        pricePrinter.print(testCart)
     }
 }
