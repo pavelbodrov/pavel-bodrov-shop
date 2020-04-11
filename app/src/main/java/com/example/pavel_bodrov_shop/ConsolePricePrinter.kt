@@ -2,7 +2,7 @@ package com.example.pavel_bodrov_shop
 
 import kotlin.math.truncate
 
-class TerminalPricePrinter: PricePrinter {
+class ConsolePricePrinter: PricePrinter {
     override fun print(product: Product) {
         val price = product.calcDiscountPrice()
         if (truncate(price) == price) {
@@ -23,5 +23,9 @@ class TerminalPricePrinter: PricePrinter {
             "%.2fP".format(totalCartSum)
         }
         println("Сумма покупок с учетом скидок: $strPrice")
+    }
+
+    override fun print(name: String) {
+        println(name)
     }
 }
