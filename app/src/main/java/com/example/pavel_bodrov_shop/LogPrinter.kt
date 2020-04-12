@@ -9,7 +9,7 @@ class LogPrinter: ProductView {
     }
 
     override fun print(product: Product) {
-        val price = product.calcDiscountPrice()
+        val price = product.getDiscountPrice()
         val strPrice: String
 
         strPrice = if (truncate(price) == price) {
@@ -23,7 +23,7 @@ class LogPrinter: ProductView {
 
     override fun print(cart: Cart) {
         cart.products.forEach(this::print)
-        val totalCartSum = cart.calcTotal()
+        val totalCartSum = cart.getDiscountSum()
         val strPrice: String
         strPrice = if (truncate(totalCartSum) == totalCartSum) {
             "%.0fP".format(totalCartSum)

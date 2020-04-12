@@ -55,7 +55,7 @@ class Presenter{
 
     fun productPrint() {
         products.forEach { product ->
-            pricePrinter.print("${product.getProductName()}: ${product.calcDiscountPrice()}")
+            pricePrinter.print("${product.getProductName()}: ${product.getDiscountPrice()}")
         }
     }
 

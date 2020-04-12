@@ -9,7 +9,7 @@ class ProductsPresenter(
     private val products = listOf(iphoneCase, samsungCase)
 
     fun pricePrint() {
-        view.print(iphoneCase.calcDiscountPrice())
+        view.print(iphoneCase.getDiscountPrice())
 //        products.forEach {product -> view.print(product) }
     }
 
@@ -19,7 +19,7 @@ class ProductsPresenter(
 
     fun productPrint() {
         products.forEach { product ->
-            view.print("${product.getProductName()}: ${product.calcDiscountPrice()}")
+            view.print("${product.getProductName()}: ${product.getDiscountPrice()}")
         }
     }
 }
