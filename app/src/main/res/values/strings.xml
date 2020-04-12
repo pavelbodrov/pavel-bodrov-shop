@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">pavel-bodrov-shop</string>
+    <string name="checkout_header">Оформление заказа</string>
+    <string name="empty_cart_text">В корзине ничего нет</string>
+    <string name="firstname_hint">Имя</string>
+    <string name="lastname_hint">Фамилия</string>
+    <string name="middlename_hint">Отчество</string>
+    <string name="payment_type">Способ оплаты:</string>
+    <string name="phone_hint">Телефон</string>
+    <string name="radio_cash_header">Наличными</string>
+    <string name="radio_card_header">Картой</string>
+    <string name="pay_button_text">Оплатить</string>
 </resources>

@@ -14,7 +14,8 @@ class Product(
      * If [salePercent] is more than 100 than product will have negative price
      * If [salePercent] less than 0 product price will be increased
      */
-    fun calcDiscountPrice(): Double = price * (1 - discount / 100.0)
-
+    fun getPrice(): Double = price
+    fun getDiscount(): Int = discount
+    fun getDiscountPrice(): Double = price * (1 - discount / 100.0)
     fun getProductName(): String = productName
 }

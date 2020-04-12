@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import kotlin.math.truncate
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ProductView {
 
@@ -16,7 +16,10 @@ class MainActivity : AppCompatActivity(), ProductView {
         setContentView(R.layout.activity_main)
 
 //        productPresenter.pricePrint()
-        cartPresenter.printCart()
+//        cartPresenter.printCart()
+
+        cartDescription.text = cartPresenter.getCartItemsStr()
+        cartTotal.text = cartPresenter.getCartTotal()
     }
 
     override fun print(price: Double) {
@@ -24,7 +27,7 @@ class MainActivity : AppCompatActivity(), ProductView {
     }
 
     override fun print(product: Product) {
-        Toast.makeText(this, "Price: ${product.calcDiscountPrice()}", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Price: ${product.getDiscountPrice()}", Toast.LENGTH_LONG).show()
     }
 
     // вывод корзины в лог
