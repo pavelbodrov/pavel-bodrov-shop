@@ -4,7 +4,7 @@ import kotlin.math.truncate
 
 class ConsolePricePrinter: PricePrinter {
     override fun print(product: Product) {
-        val price = product.getDiscountPrice()
+        val price = product.discountPrice
         if (truncate(price) == price) {
             println("%.0fP".format(price))
         }
@@ -15,7 +15,7 @@ class ConsolePricePrinter: PricePrinter {
 
     override fun print(cart: Cart) {
         cart.products.forEach(this::print)
-        val totalCartSum = cart.getDiscountSum()
+        val totalCartSum = cart.discountSum
         val strPrice: String
         strPrice = if (truncate(totalCartSum) == totalCartSum) {
             "%.0fP".format(totalCartSum)
