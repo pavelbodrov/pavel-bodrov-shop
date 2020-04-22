@@ -1,20 +1,20 @@
-package com.example.pavel_bodrov_shop
+package com.example.pavel_bodrov_shop.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.pavel_bodrov_shop.*
+import kotlinx.android.synthetic.main.checkout_layout.*
 
-class MainActivity : AppCompatActivity(), OrderView {
+class CheckoutActivity : BaseActivity(), OrderView {
 
     private val presenter = CartPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.checkout_layout)
 
 //        productPresenter.pricePrint()
 //        cartPresenter.printCart()
@@ -60,6 +60,8 @@ class MainActivity : AppCompatActivity(), OrderView {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
+        checkoutBackButton.setOnClickListener { finish() }
+
     }
 
     override fun print(product: Product) {
@@ -84,7 +86,8 @@ class MainActivity : AppCompatActivity(), OrderView {
 
     // вывод корзины в лог
     override fun print(cart: Cart) {
-        val logPrinter: OrderView = LogPrinter()
+        val logPrinter: OrderView =
+            LogPrinter()
         logPrinter.print(cart)
     }
 
