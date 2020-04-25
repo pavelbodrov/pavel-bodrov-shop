@@ -6,11 +6,14 @@ import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
 import com.example.pavel_bodrov_shop.*
+import com.example.pavel_bodrov_shop.model.Cart
+import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.presenter.CheckoutPresenter
 import kotlinx.android.synthetic.main.checkout_layout.*
 
 class CheckoutActivity : BaseActivity(), OrderView {
 
-    private val presenter = CartPresenter()
+    private val presenter = CheckoutPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,7 +95,6 @@ class CheckoutActivity : BaseActivity(), OrderView {
     }
 
     override fun print(string: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     fun EditText.showError(visible: Boolean) {

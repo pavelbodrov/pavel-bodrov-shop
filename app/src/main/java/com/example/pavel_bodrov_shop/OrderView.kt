@@ -1,5 +1,7 @@
 package com.example.pavel_bodrov_shop
 
+import com.example.pavel_bodrov_shop.model.Cart
+import com.example.pavel_bodrov_shop.model.Product
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType

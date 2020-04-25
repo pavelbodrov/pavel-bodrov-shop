@@ -1,5 +1,9 @@
 package com.example.pavel_bodrov_shop
 
+import com.example.pavel_bodrov_shop.model.Cart
+import com.example.pavel_bodrov_shop.model.Product
+
+
 interface PricePrinter {
     /**
      * Outputs price in <PRICE>P format.

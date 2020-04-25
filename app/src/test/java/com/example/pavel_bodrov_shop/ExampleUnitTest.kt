@@ -1,5 +1,6 @@
 package com.example.pavel_bodrov_shop
 
+import com.example.pavel_bodrov_shop.model.Product
 import org.junit.Test
 
 /**
@@ -9,7 +10,6 @@ import org.junit.Test
  */
 class ExampleUnitTest {
 
-    private val presenter = Presenter()
     @Test
     fun productPrinterTest() {
         val iphoneCase = Product(price = 123.5, discount = 30, productName = "iphonecase")
@@ -21,42 +21,28 @@ class ExampleUnitTest {
 
     @Test
     fun cartPrinterTest() {
-        val pricePrinter: PricePrinter = ConsolePricePrinter()
-        val testCart = Cart(listOf(
-            Product(price = 123.5, discount = 30, productName = "case1"),
-            Product(price = 256.17, discount = 5, productName = "case2"),
-            Product(price = 3967.0, discount = 17, productName = "case3"))
-        )
 
-        pricePrinter.print(testCart)
     }
 
     @Test
     fun presenterTest() {
-        presenter.productPrint()
+        val products = mutableListOf(
+            Product(
+                price = 123.5,
+                discount = 30,
+                productName = "product 1"
+            ),
+            Product(
+                price = 256.17,
+                discount = 5,
+                productName = "product 2"
+            ),
+            Product(
+                price = 3967.0,
+                discount = 17,
+                productName = "product 3"
+            )
+        )
+
     }
-}
-
-class Presenter{
-    private val iphoneCase = Product(price = 123.5, discount = 30, productName = "phone case")
-    private val samsungCase = Product(price = 30.5, discount = 5, productName = "samsung case")
-
-    private val pricePrinter: PricePrinter = ConsolePricePrinter()
-
-    private val products = listOf(iphoneCase, samsungCase)
-
-    fun pricePrint() {
-        products.forEach {product -> pricePrinter.print(product) }
-    }
-
-    fun productNamePrint() {
-        products.forEach {product -> pricePrinter.print(product.productName) }
-    }
-
-    fun productPrint() {
-        products.forEach { product ->
-            pricePrinter.print("${product.productName}: ${product.discountPrice}")
-        }
-    }
-
 }

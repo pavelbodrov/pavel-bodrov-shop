@@ -19,4 +19,8 @@
     <string name="cart_back_button_desc">Назад</string>
     <string name="cart_to_checkout_button">Оформить заказ</string>
     <string name="checkout_back_button_desc">Назад</string>
+    <string name="cart_product_name_header">Название</string>
+    <string name="cart_product_discount_header">Скидка</string>
+    <string name="cart_product_price_header">Цена</string>
+    <string name="add_new_product_button">Добавить продукт</string>
 </resources>

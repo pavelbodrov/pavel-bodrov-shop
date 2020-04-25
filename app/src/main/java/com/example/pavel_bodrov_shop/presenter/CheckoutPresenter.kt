@@ -1,17 +1,30 @@
-package com.example.pavel_bodrov_shop
+package com.example.pavel_bodrov_shop.presenter
 
+import com.example.pavel_bodrov_shop.CreateOrderModel
+import com.example.pavel_bodrov_shop.OrderView
+import com.example.pavel_bodrov_shop.model.Cart
+import com.example.pavel_bodrov_shop.model.Product
 import moxy.MvpPresenter
 
-class Cart (val products: List<Product> = emptyList()) {
-    val discountSum get() = products.map {product -> product.discountPrice}.sum()
-    val fullSum get() = products.map {product -> product.price}.sum()
-}
-
-class CartPresenter: MvpPresenter<OrderView>() {
-    private val cart = Cart(listOf(
-        Product(price = 123.5, discount = 30, productName = "product 1"),
-        Product(price = 256.17, discount = 5, productName = "product 2"),
-        Product(price = 3967.0, discount = 17, productName = "product 3"))
+class CheckoutPresenter: MvpPresenter<OrderView>() {
+    private val cart = Cart(
+        mutableListOf(
+            Product(
+                price = 123.5,
+                discount = 30,
+                productName = "product 1"
+            ),
+            Product(
+                price = 256.17,
+                discount = 5,
+                productName = "product 2"
+            ),
+            Product(
+                price = 3967.0,
+                discount = 17,
+                productName = "product 3"
+            )
+        )
     )
 
     private val model = CreateOrderModel()

@@ -18,6 +18,48 @@
         app:layout_constraintStart_toEndOf="@+id/cartBackButton"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/cartProductNameHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/cart_product_name_header"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cartHeader" />
+
+    <TextView
+        android:id="@+id/cartProductDiscountHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/cart_product_discount_header"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/cartProductPriceHeader"
+        app:layout_constraintStart_toEndOf="@+id/cartProductNameHeader"
+        app:layout_constraintTop_toBottomOf="@+id/cartHeader" />
+
+    <TextView
+        android:id="@+id/cartProductPriceHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="55dp"
+        android:padding="16dp"
+        android:text="@string/cart_product_price_header"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cartHeader"
+        android:layout_marginEnd="55dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartListRv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/cartToCheckoutButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cartProductDiscountHeader" />
+
     <ImageButton
         android:id="@+id/cartBackButton"
         android:layout_width="wrap_content"
@@ -31,10 +73,23 @@
         android:id="@+id/cartToCheckoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/cart_to_checkout_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cartAddNewProductButton"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/cartAddNewProductButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/add_new_product_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

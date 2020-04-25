@@ -1,6 +1,8 @@
 package com.example.pavel_bodrov_shop
 
 import android.util.Log
+import com.example.pavel_bodrov_shop.model.Cart
+import com.example.pavel_bodrov_shop.model.Product
 import kotlin.math.truncate
 
 class LogPrinter: OrderView {

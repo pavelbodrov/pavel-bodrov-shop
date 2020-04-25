@@ -1,4 +1,4 @@
-package com.example.pavel_bodrov_shop
+package com.example.pavel_bodrov_shop.model
 
 class Product(
     /**
