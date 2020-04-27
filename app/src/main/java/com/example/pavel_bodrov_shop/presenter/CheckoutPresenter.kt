@@ -1,25 +1,27 @@
 package com.example.pavel_bodrov_shop.presenter
 
-import com.example.pavel_bodrov_shop.CreateOrderModel
-import com.example.pavel_bodrov_shop.OrderView
-import com.example.pavel_bodrov_shop.model.Cart
-import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.domain.model.CreateOrderModel
+import com.example.pavel_bodrov_shop.domain.model.Cart
+import com.example.pavel_bodrov_shop.domain.model.Product
 import moxy.MvpPresenter
 
-class CheckoutPresenter: MvpPresenter<OrderView>() {
+class CheckoutPresenter: MvpPresenter<CheckoutView>() {
     private val cart = Cart(
         mutableListOf(
             Product(
+                id = 1,
                 price = 123.5,
                 discount = 30,
                 productName = "product 1"
             ),
             Product(
+                id = 2,
                 price = 256.17,
                 discount = 5,
                 productName = "product 2"
             ),
             Product(
+                id = 3,
                 price = 3967.0,
                 discount = 17,
                 productName = "product 3"

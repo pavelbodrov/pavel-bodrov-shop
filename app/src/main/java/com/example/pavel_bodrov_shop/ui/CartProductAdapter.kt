@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pavel_bodrov_shop.R
-import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.domain.model.Product
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class CartProductAdapter (
-    private val onDeleteClick: (string: String) -> Unit
+    private val onDeleteClick: (productName: String) -> Unit,
+    private val onProductClick: (product: Product) -> Unit
 ): RecyclerView.Adapter<CartProductAdapter.ViewHolder>() {
 
     private var products = listOf<Product>()
@@ -36,6 +37,10 @@ class CartProductAdapter (
 
             itemView.deleteProductIv.setOnClickListener{
                 onDeleteClick(product.productName)
+            }
+
+            itemView.setOnClickListener {
+                onProductClick(product)
             }
         }
     }

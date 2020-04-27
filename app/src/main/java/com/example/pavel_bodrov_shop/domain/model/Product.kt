@@ -1,13 +1,18 @@
-package com.example.pavel_bodrov_shop.model
+package com.example.pavel_bodrov_shop.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 class Product(
     /**
      * Must be positive
      */
+    val id: Long,
     val price: Double,
     val discount: Int = 0,
     val productName: String
-) {
+): Parcelable {
     /**
      * @return price with applied discount determined by [salePercent]
      *

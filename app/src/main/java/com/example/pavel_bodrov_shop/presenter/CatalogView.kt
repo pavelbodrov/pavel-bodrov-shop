@@ -1,7 +1,9 @@
 package com.example.pavel_bodrov_shop.presenter
 
+import com.example.pavel_bodrov_shop.domain.model.Product
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
+import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
@@ -11,5 +13,14 @@ interface CatalogView: MvpView {
     fun setCategories(list: List<String>)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
+    fun setLastViewed(products: List<Product>)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
     fun removeItem(position: Int)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun showProductIds(productIds: List<Long>)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun showProductInfo(product: Product)
 }

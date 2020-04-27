@@ -1,7 +1,7 @@
 package com.example.pavel_bodrov_shop
 
-import com.example.pavel_bodrov_shop.model.Cart
-import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.domain.model.Cart
+import com.example.pavel_bodrov_shop.domain.model.Product
 import kotlin.math.truncate
 
 class ConsolePricePrinter: PricePrinter {

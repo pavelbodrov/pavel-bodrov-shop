@@ -1,6 +1,6 @@
 package com.example.pavel_bodrov_shop
 
-import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.domain.model.Product
 import org.junit.Test
 
 /**

@@ -1,11 +1,12 @@
 package com.example.pavel_bodrov_shop
 
 import android.util.Log
-import com.example.pavel_bodrov_shop.model.Cart
-import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.domain.model.Cart
+import com.example.pavel_bodrov_shop.domain.model.Product
+import com.example.pavel_bodrov_shop.presenter.CheckoutView
 import kotlin.math.truncate
 
-class LogPrinter: OrderView {
+class LogPrinter: CheckoutView {
 
     override fun print(product: Product) {
         val price = product.discountPrice

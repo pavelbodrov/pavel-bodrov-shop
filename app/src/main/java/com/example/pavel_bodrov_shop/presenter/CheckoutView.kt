@@ -1,13 +1,13 @@
-package com.example.pavel_bodrov_shop
+package com.example.pavel_bodrov_shop.presenter
 
-import com.example.pavel_bodrov_shop.model.Cart
-import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.domain.model.Cart
+import com.example.pavel_bodrov_shop.domain.model.Product
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface OrderView: MvpView {
+interface CheckoutView: MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun print(string: String)

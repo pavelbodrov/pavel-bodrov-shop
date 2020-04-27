@@ -11,7 +11,7 @@
     <string name="radio_card_header">Картой</string>
     <string name="pay_button_text">Оплатить</string>
     <string name="catalog_header">Каталог</string>
-    <string name="catalog_to_product_button">Посмотреть товар</string>
+    <string name="catalog_to_cart_button">В корзину</string>
     <string name="product_info_header">Информация о продукте</string>
     <string name="product_info_back_button">Назад</string>
     <string name="product_to_cart_button">Корзина</string>
@@ -23,4 +23,5 @@
     <string name="cart_product_discount_header">Скидка</string>
     <string name="cart_product_price_header">Цена</string>
     <string name="add_new_product_button">Добавить продукт</string>
+    <string name="catalog_lv_header">Последние просмотренные товары</string>
 </resources>

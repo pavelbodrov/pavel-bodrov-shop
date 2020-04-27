@@ -1,4 +1,4 @@
-package com.example.pavel_bodrov_shop.model
+package com.example.pavel_bodrov_shop.domain.model
 
 class Cart (var products: MutableList<Product> = mutableListOf()) {
     val discountSum get() = products.map {product -> product.discountPrice}.sum()

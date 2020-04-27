@@ -6,12 +6,14 @@ import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
 import com.example.pavel_bodrov_shop.*
-import com.example.pavel_bodrov_shop.model.Cart
-import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.domain.model.Cart
+import com.example.pavel_bodrov_shop.domain.model.Product
 import com.example.pavel_bodrov_shop.presenter.CheckoutPresenter
+import com.example.pavel_bodrov_shop.presenter.CheckoutView
 import kotlinx.android.synthetic.main.checkout_layout.*
 
-class CheckoutActivity : BaseActivity(), OrderView {
+class CheckoutActivity : BaseActivity(),
+    CheckoutView {
 
     private val presenter = CheckoutPresenter()
 
@@ -89,7 +91,7 @@ class CheckoutActivity : BaseActivity(), OrderView {
 
     // вывод корзины в лог
     override fun print(cart: Cart) {
-        val logPrinter: OrderView =
+        val logPrinter: CheckoutView =
             LogPrinter()
         logPrinter.print(cart)
     }

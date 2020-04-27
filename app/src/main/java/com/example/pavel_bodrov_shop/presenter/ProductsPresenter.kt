@@ -1,17 +1,18 @@
 package com.example.pavel_bodrov_shop.presenter
 
-import com.example.pavel_bodrov_shop.OrderView
-import com.example.pavel_bodrov_shop.model.Product
+import com.example.pavel_bodrov_shop.domain.model.Product
 
 class ProductsPresenter(
-    private val orderView: OrderView
+    private val orderView: CheckoutView
 ) {
     private val iphoneCase = Product(
+        id = 1,
         price = 123.5,
         discount = 30,
         productName = "case 1"
     )
     private val samsungCase = Product(
+        id = 2,
         price = 30.5,
         discount = 5,
         productName = "case 2"
