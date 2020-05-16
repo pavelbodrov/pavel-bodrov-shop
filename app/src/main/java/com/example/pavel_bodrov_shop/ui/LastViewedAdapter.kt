@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.pavel_bodrov_shop.R
 import com.example.pavel_bodrov_shop.domain.model.Product
 import kotlinx.android.synthetic.main.catalog_lv_product.view.*
@@ -30,8 +31,13 @@ class LastViewedAdapter (
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product) {
-            itemView.catalogLvProductNameTv.text = product.productName
-            itemView.catalogLvProductPriceTv.text = "%.2f Р".format(product.discountPrice)
+
+            Glide
+                .with(itemView)
+                .load(product.imageUrl)
+                .error(R.mipmap.ic_launcher)
+                .into(itemView.catalogLastViewedIv)
+            itemView.catalogLastViewedNameTv.text = product.name.split(" ")[0]
 
             itemView.setOnClickListener {
                 onProductClick(product)

@@ -1,5 +1,6 @@
 package com.example.pavel_bodrov_shop.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,8 @@ import com.example.pavel_bodrov_shop.domain.model.Product
 import com.example.pavel_bodrov_shop.presenter.CheckoutPresenter
 import com.example.pavel_bodrov_shop.presenter.CheckoutView
 import kotlinx.android.synthetic.main.checkout_layout.*
+import kotlinx.android.synthetic.main.footer_layout.*
+import kotlinx.android.synthetic.main.header_layout.*
 
 class CheckoutActivity : BaseActivity(),
     CheckoutView {
@@ -21,13 +24,13 @@ class CheckoutActivity : BaseActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.checkout_layout)
 
-//        productPresenter.pricePrint()
-//        cartPresenter.printCart()
-
+        headerTv.text = "Оформление"
         presenter.attachView(this)
 
-        cartDescription.text = presenter.getCartItemsStr()
-        cartTotal.text = presenter.getCartTotal()
+        headerBackButton.setOnClickListener { finish() }
+        footerCatalogButton.setOnClickListener { startActivity(Intent(this, CatalogActivity::class.java)) }
+        footerCartButton.setOnClickListener { startActivity(Intent(this, CartActivity::class.java)) }
+        footerContactsButton.setOnClickListener { startActivity(Intent(this, ContactsActivity::class.java)) }
 
         setListeners()
     }
@@ -65,8 +68,6 @@ class CheckoutActivity : BaseActivity(),
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        checkoutBackButton.setOnClickListener { finish() }
-
     }
 
     override fun print(product: Product) {
@@ -90,14 +91,9 @@ class CheckoutActivity : BaseActivity(),
     }
 
     // вывод корзины в лог
-    override fun print(cart: Cart) {
-        val logPrinter: CheckoutView =
-            LogPrinter()
-        logPrinter.print(cart)
-    }
+    override fun print(cart: Cart) {  }
 
-    override fun print(string: String) {
-    }
+    override fun print(string: String) {}
 
     fun EditText.showError(visible: Boolean) {
         val drawable = if (visible) R.drawable.ic_error else 0

@@ -4,24 +4,34 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pavel_bodrov_shop.App
 import com.example.pavel_bodrov_shop.presenter.CatalogPresenter
 import com.example.pavel_bodrov_shop.R
-import com.example.pavel_bodrov_shop.data.ViewedProductDaoImpl
+import com.example.pavel_bodrov_shop.domain.model.Category
 import com.example.pavel_bodrov_shop.domain.model.Product
 import com.example.pavel_bodrov_shop.presenter.CatalogView
 import kotlinx.android.synthetic.main.catalog_layout.*
+import kotlinx.android.synthetic.main.footer_layout.*
+import kotlinx.android.synthetic.main.header_layout.*
 import moxy.ktx.moxyPresenter
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 class CatalogActivity: BaseActivity(),
     CatalogView {
 
-    private val presenter by moxyPresenter {
-        CatalogPresenter(ViewedProductDaoImpl(sharedPreferences))
-    }
+    @Inject
+    lateinit var catalogPresenter: CatalogPresenter
+
+    private val presenter by moxyPresenter { catalogPresenter }
     private val categoryAdapter = CategoryAdapter {
-            category -> presenter.removeItem(category)
+            category -> presenter.showProductsByCategory(category)
     }
 
     private val lastViewedAdapter = LastViewedAdapter {
@@ -29,21 +39,32 @@ class CatalogActivity: BaseActivity(),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.catalog_layout)
 
-            catalogToCartButton.setOnClickListener {
-            startActivity(Intent(this, CartActivity::class.java))
-        }
+//        catalogToCartButton.setOnClickListener {
+//            startActivity(Intent(this, CartActivity::class.java))
+//        }
+
+        headerBackButton.visibility = View.INVISIBLE
+        headerTv.text = "Каталог"
+
+        footerCartButton.setOnClickListener { startActivity(Intent(this, CartActivity::class.java)) }
+        footerContactsButton.setOnClickListener { startActivity(Intent(this, ContactsActivity::class.java)) }
 
         categoryRv.layoutManager = LinearLayoutManager(this)
         categoryRv.adapter = categoryAdapter
+
+        val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.recyclerview_divider)!!)
+        categoryRv.addItemDecoration(dividerItemDecoration)
 
         viewedProductsRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         viewedProductsRv.adapter = lastViewedAdapter
     }
 
-    override fun setCategories(list: List<String>) {
+    override fun setCategories(list: List<Category>) {
         categoryAdapter.setData(list)
     }
 
@@ -65,7 +86,15 @@ class CatalogActivity: BaseActivity(),
             putExtra(ProductInfoActivity.PRODUCT_TAG, product)
         })
     }
+
+    override fun showProductsByCategory(category: Category) {
+        startActivity(Intent(this, ProductsActivity::class.java).apply {
+            putExtra(ProductsActivity.CATEGORY_TAG, category)
+        })
+    }
+
+
 }
 
-val AppCompatActivity.sharedPreferences: SharedPreferences
-    get() = getSharedPreferences("data", MODE_PRIVATE)
+//val AppCompatActivity.sharedPreferences: SharedPreferences
+//    get() = getSharedPreferences("data", MODE_PRIVATE)

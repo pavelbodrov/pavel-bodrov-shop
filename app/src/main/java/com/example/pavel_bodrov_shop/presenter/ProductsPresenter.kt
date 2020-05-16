@@ -1,37 +1,21 @@
 package com.example.pavel_bodrov_shop.presenter
 
+import com.example.pavel_bodrov_shop.domain.MainApi
+import com.example.pavel_bodrov_shop.domain.model.Category
 import com.example.pavel_bodrov_shop.domain.model.Product
+import kotlinx.coroutines.launch
+import moxy.InjectViewState
+import javax.inject.Inject
 
-class ProductsPresenter(
-    private val orderView: CheckoutView
-) {
-    private val iphoneCase = Product(
-        id = 1,
-        price = 123.5,
-        discount = 30,
-        productName = "case 1"
-    )
-    private val samsungCase = Product(
-        id = 2,
-        price = 30.5,
-        discount = 5,
-        productName = "case 2"
-    )
-
-    private val products = listOf(iphoneCase, samsungCase)
-
-    fun pricePrint() {
-        orderView.print("%.2f".format(iphoneCase.discountPrice))
-//        products.forEach {product -> view.print(product) }
-    }
-
-    fun productNamePrint() {
-        products.forEach {product -> orderView.print(product.productName) }
-    }
-
-    fun productPrint() {
-        products.forEach { product ->
-            orderView.print("${product.productName}: ${product.discountPrice}")
+@InjectViewState
+class ProductsPresenter @Inject constructor(private val mainApi: MainApi): BasePresenter<ProductsView>() {
+    fun setProducts(category: Category) {
+        launch {
+            viewState.setProducts(mainApi.productsByCategory(category.id))
         }
+    }
+
+    fun showProductInfo(product: Product) {
+        viewState.showProductInfo(product)
     }
 }

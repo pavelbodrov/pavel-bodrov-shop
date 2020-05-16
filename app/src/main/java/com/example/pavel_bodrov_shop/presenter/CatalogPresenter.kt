@@ -1,27 +1,23 @@
 package com.example.pavel_bodrov_shop.presenter
-
+import com.example.pavel_bodrov_shop.domain.MainApi
 import com.example.pavel_bodrov_shop.domain.ViewedProductDao
+import com.example.pavel_bodrov_shop.domain.model.Category
 import com.example.pavel_bodrov_shop.domain.model.Product
+import kotlinx.coroutines.launch
 import moxy.InjectViewState
-import moxy.MvpPresenter
+import javax.inject.Inject
 
 @InjectViewState
-class CatalogPresenter(
+class CatalogPresenter @Inject constructor(
+    private val mainApi: MainApi,
     private val viewedProductDao: ViewedProductDao
-): MvpPresenter<CatalogView>() {
-
-    val categories = mutableListOf(
-        "Телевизоры",
-        "Телефоны",
-        "Планшеты",
-        "Часы",
-        "Дрова"
-    )
-
+): BasePresenter<CatalogView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.setCategories(categories)
+        launch {
+            viewState.setCategories(mainApi.allCategoriesNames())
+        }
     }
 
     override fun attachView(view: CatalogView?) {
@@ -31,13 +27,11 @@ class CatalogPresenter(
         viewState.setLastViewed(products)
     }
 
-    fun removeItem(category: String) {
-        val position = categories.indexOf(category)
-        categories.remove(category)
-        viewState.removeItem(position)
-    }
-
     fun showProductInfo(product: Product) {
         viewState.showProductInfo(product)
+    }
+
+    fun showProductsByCategory(category: Category) {
+        viewState.showProductsByCategory(category)
     }
 }

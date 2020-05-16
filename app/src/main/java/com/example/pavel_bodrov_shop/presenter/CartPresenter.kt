@@ -1,50 +1,48 @@
 package com.example.pavel_bodrov_shop.presenter
 
-import com.example.pavel_bodrov_shop.domain.model.Cart
+import android.util.Log
+import com.example.pavel_bodrov_shop.domain.CartProductsDao
+import com.example.pavel_bodrov_shop.domain.MainApi
 import com.example.pavel_bodrov_shop.domain.model.Product
-import moxy.MvpPresenter
+import kotlinx.coroutines.launch
+import moxy.InjectViewState
+import javax.inject.Inject
 
-class CartPresenter: MvpPresenter<CartView>() {
-    private val cart = Cart(mutableListOf(
-            Product(
-                id = 1,
-                price = 123.5,
-                discount = 30,
-                productName = "product 1"
-            ),
-            Product(
-                id = 2,
-                price = 256.17,
-                discount = 5,
-                productName = "product 2"
-            ),
-            Product(
-                id = 3,
-                price = 3967.0,
-                discount = 17,
-                productName = "product 3"
-            )
-        )
-    )
+@InjectViewState
+class CartPresenter@Inject constructor(
+    private val mainApi: MainApi,
+    private val cartProductsDao: CartProductsDao
+): BasePresenter<CartView>() {
+    private val productIds = cartProductsDao.getAllProducts()
+//    private var products = productIds.map{ cartProductsDao.getProductById(it) }.toMutableList()
+//    private var products = listOf<Product>().toMutableList()
+    private val products = java.util.Collections.synchronizedList(mutableListOf<Product>())
 
-    private val productToAdd = Product(id = 4, price = 12.3, discount = 5, productName = "New product")
+    private fun setProductsList() {
+        productIds.forEach {
+            Log.d("DUMMY", it.toString())
+            launch {
+                val product = mainApi.productById(it)
+                Log.d("DUMMY", product.name)
+                products += product
+            }
+        }
+    }
 
     fun setData() {
-        viewState.setProducts(cart.products)
+        setProductsList()
+        Log.d("DUMMY_SIZE", products.size.toString())
+        viewState.setProducts(products)
     }
 
-    fun removeItem(productName: String) {
-        val position = cart.products.indexOf(
-            cart.products.find { product -> product.productName == productName }
+    fun removeItem(product: Product) {
+        val position = products.indexOf(
+            products.find { it -> it.name == product.name }
         )
-        cart.products.removeAt(position)
-        viewState.removeItem(position)
-    }
-
-    fun addItem() {
-        val position = cart.products.size
-        cart.products.add(position, productToAdd)
-        viewState.addItem(position)
+        products.removeAt(position)
+        cartProductsDao.removeFromCart(product.id)
+        val total = products.map {it.price}.sum()
+        viewState.removeItem(position, total)
     }
 
     fun showProductInfo(product: Product) {

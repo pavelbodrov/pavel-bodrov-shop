@@ -1,51 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <include
+        android:id="@+id/catalogHeader"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/catalogFooter"
+        layout="@layout/footer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
-        android:id="@+id/productInfoHeader"
+        android:id="@+id/productPriceTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/product_info_header"
+        android:layout_marginTop="16dp"
+        android:padding="14dp"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/productInfoBackButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/productInfoBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/product_info_back_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_left" />
+        app:layout_constraintTop_toBottomOf="@+id/productsInfoIv"
+        tools:text="Цена" />
 
-    <Button
-        android:id="@+id/productInfoToCartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/product_to_cart_button"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/productsInfoIv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/catalogHeader"
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/productNameTv"
-        android:layout_width="wrap_content"
+        android:id="@+id/productDescription"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="start"
+        android:padding="14dp"
         android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/catalogFooter"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productInfoHeader"
-        tools:text="Продукт" />
+        app:layout_constraintTop_toBottomOf="@+id/productPriceTv"
+        app:layout_constraintVertical_bias="0.479"
+        tools:text="Описание" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
     <string name="radio_cash_header">Наличными</string>
     <string name="radio_card_header">Картой</string>
     <string name="pay_button_text">Оплатить</string>
-    <string name="catalog_header">Каталог</string>
+    <string name="catalog_header">"МотоМаркет"</string>
     <string name="catalog_to_cart_button">В корзину</string>
     <string name="product_info_header">Информация о продукте</string>
     <string name="product_info_back_button">Назад</string>
@@ -24,4 +24,14 @@
     <string name="cart_product_price_header">Цена</string>
     <string name="add_new_product_button">Добавить продукт</string>
     <string name="catalog_lv_header">Последние просмотренные товары</string>
+    <string name="buy_button_text">Добавить в корзину</string>
+    <string name="footer_catalog_button_text">Каталог</string>
+    <string name="footer_cart_button_text">Корзина</string>
+    <string name="footer_contacts_button_text">Контакты</string>
+    <string name="contacts_header">МотоМаркет</string>
+    <string name="contacts_addr">г. Челябинск, ул. Братьев Кашириных, д. 131А</string>
+    <string name="contacts_phone">+7-(932)-891-33-20</string>
+    <string name="cart_total_text">Сумма заказа:</string>
+    <string name="cart_checkout_button">Оформить заказ</string>
+    <string name="checkout_pay_button">Оплатить</string>
 </resources>

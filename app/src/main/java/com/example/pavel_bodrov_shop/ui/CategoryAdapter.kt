@@ -5,16 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pavel_bodrov_shop.R
+import com.example.pavel_bodrov_shop.domain.model.Category
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_category.*
 
 class CategoryAdapter (
-    private val onDeleteClick: (string: String) -> Unit
+    private val onCategoryClick: (category: Category) -> Unit
 ): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
-    private var categories: List<String> = listOf()
+    private var categories: List<Category> = listOf()
 
-    fun setData(categories: List<String>) {
+    fun setData(categories: List<Category>) {
         this.categories = categories
         notifyDataSetChanged()
     }
@@ -29,10 +30,11 @@ class CategoryAdapter (
     }
 
     inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bind(text: String) {
-            categoryTv.text = text
-            deleteIv.setOnClickListener{
-                onDeleteClick(text)
+        fun bind(category: Category) {
+            categoryTv.text = category.name
+
+            categoryTv.setOnClickListener{
+                onCategoryClick(category)
             }
         }
     }

@@ -9,9 +9,11 @@ class Product(
      * Must be positive
      */
     val id: Long,
+    val name: String,
     val price: Double,
-    val discount: Int = 0,
-    val productName: String
+    val discount: Int,
+    val description: String,
+    val imageUrl: String
 ): Parcelable {
     /**
      * @return price with applied discount determined by [salePercent]

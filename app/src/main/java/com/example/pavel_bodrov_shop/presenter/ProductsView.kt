@@ -5,17 +5,11 @@ import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
-@StateStrategyType(AddToEndSingleStrategy::class)
-interface CartView: MvpView {
+interface ProductsView: MvpView {
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun setProducts(list: List<Product>)
-
+    fun setDummy(products: List<Product>)
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun removeItem(position: Int, total: Double)
-
-    @StateStrategyType(AddToEndSingleStrategy::class)
-    fun addItem(position: Int)
-
+    fun setProducts(products: List<Product>)
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun showProductInfo(product: Product)
 }

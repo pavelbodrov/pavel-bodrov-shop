@@ -6,48 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".ui.CheckoutActivity">
 
-    <TextView
-        android:id="@+id/checkoutHeader"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/checkoutPayButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:padding="10dp"
-        android:text="@string/checkout_header"
-        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/cart_checkout_button"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/catalogFooter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/checkoutBackButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/catalogHeader"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/cartDescription"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/catalogFooter"
+        layout="@layout/footer_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/empty_cart_text"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkoutHeader" />
-
-    <TextView
-        android:id="@+id/cartTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cartDescription" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <EditText
         android:id="@+id/firstNameInput"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="40dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/firstname_hint"
@@ -55,12 +50,15 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cartTotal" />
+        app:layout_constraintTop_toBottomOf="@+id/catalogHeader" />
 
     <EditText
         android:id="@+id/lastNameInput"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/lastname_hint"
@@ -72,8 +70,11 @@
 
     <EditText
         android:id="@+id/middleNameInput"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/middlename_hint"
@@ -85,8 +86,11 @@
 
     <EditText
         android:id="@+id/phoneInput"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/phone_hint"
@@ -96,22 +100,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/middleNameInput" />
 
-    <Button
-        android:id="@+id/payButton"
-        android:layout_width="254dp"
-        android:layout_height="49dp"
-        android:layout_margin="10dp"
-        android:background="@color/colorPrimary"
-        android:padding="10dp"
-        android:text="@string/pay_button_text"
-        android:textColor="?attr/colorButtonNormal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/checkoutPayButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paymentTypeHeader">
@@ -120,12 +115,14 @@
             android:id="@+id/radioTypeCash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="@string/radio_cash_header" />
 
         <RadioButton
             android:id="@+id/radioTypeCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="@string/radio_card_header" />
 
     </RadioGroup>
@@ -134,19 +131,13 @@
         android:id="@+id/paymentTypeHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
         android:text="@string/payment_type"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneInput" />
-
-    <ImageButton
-        android:id="@+id/checkoutBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/checkout_back_button_desc"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

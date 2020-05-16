@@ -1,34 +1,44 @@
 package com.example.pavel_bodrov_shop.data
 
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.core.content.edit
-import com.example.pavel_bodrov_shop.domain.ViewedProductDao
+import com.example.pavel_bodrov_shop.domain.CartProductsDao
 import com.example.pavel_bodrov_shop.domain.model.Product
 
-class ViewedProductDaoImpl(
+class CartProductsDaoImpl(
     private val sharedPreferences: SharedPreferences
-): ViewedProductDao {
+): CartProductsDao {
 
-    private var savedProductIds: List<Long>
-        get() = sharedPreferences.getString(PRODUCT_TAG, null)
+    private var cartProductsIds: List<Long>
+        get() = sharedPreferences.getString(CART_TAG, null)
             ?.split(",")
             ?.mapNotNull { it.toLongOrNull() } ?: emptyList()
         set(value) = sharedPreferences.edit {
-            putString(PRODUCT_TAG, value.joinToString(","))
+            putString(CART_TAG, value.joinToString(","))
         }
 
-    override fun addProduct(productId: Long) {
-        val productIds:List<Long> = savedProductIds
+    override fun addToCart(productId: Long) {
+        val productIds:List<Long> = cartProductsIds
         val newProductIds: MutableList<Long> = mutableListOf<Long>().apply {
+            addAll(productIds)
             add(productId)
+        }
+
+        cartProductsIds = newProductIds
+    }
+
+    override fun removeFromCart(productId: Long) {
+        val productIds:List<Long> = cartProductsIds
+        val newProductIds: MutableList<Long> = mutableListOf<Long>().apply {
             addAll(productIds.filter { it != productId})
         }
 
-        savedProductIds = newProductIds
+        cartProductsIds = newProductIds
     }
 
     override fun getAllProducts(): List<Long> {
-        return savedProductIds
+        return cartProductsIds
     }
 
     override fun getProductById(productId: Long): Product {
@@ -80,6 +90,6 @@ class ViewedProductDaoImpl(
 
 
     companion object {
-        private const val PRODUCT_TAG = "PRODUCT_TAG"
+        private const val CART_TAG = "CART_TAG"
     }
 }
