@@ -2,13 +2,13 @@ package com.example.pavel_bodrov_shop.ui
 
 import android.content.Intent
 import android.os.Bundle
-import com.example.pavel_bodrov_shop.App
 import com.example.pavel_bodrov_shop.R
-import com.example.pavel_bodrov_shop.presenter.ProductInfoView
+import com.example.pavel_bodrov_shop.presenter.view.ProductInfoView
 import kotlinx.android.synthetic.main.footer_layout.*
 import kotlinx.android.synthetic.main.header_layout.*
 
-class ContactsActivity: BaseActivity(), ProductInfoView {
+class ContactsActivity: BaseActivity(),
+    ProductInfoView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contacts_layout)

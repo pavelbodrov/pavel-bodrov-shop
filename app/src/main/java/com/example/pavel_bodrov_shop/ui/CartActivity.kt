@@ -8,24 +8,27 @@ import com.example.pavel_bodrov_shop.App
 import com.example.pavel_bodrov_shop.R
 import com.example.pavel_bodrov_shop.domain.model.Product
 import com.example.pavel_bodrov_shop.presenter.CartPresenter
-import com.example.pavel_bodrov_shop.presenter.CartView
+import com.example.pavel_bodrov_shop.presenter.view.CartView
 import com.example.pavel_bodrov_shop.ui.ProductInfoActivity.Companion.PRODUCT_TAG
+import com.example.pavel_bodrov_shop.ui.adapter.CartProductAdapter
 import kotlinx.android.synthetic.main.cart_layout.*
 import kotlinx.android.synthetic.main.footer_layout.*
 import kotlinx.android.synthetic.main.header_layout.*
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
-class CartActivity: BaseActivity(), CartView {
+class CartActivity: BaseActivity(),
+    CartView {
 
     @Inject
     lateinit var cartPresenter: CartPresenter
     private val presenter by moxyPresenter { cartPresenter }
 
-    private val adapter = CartProductAdapter (
-        {productName -> presenter.removeItem(productName)},
-        {product -> presenter.showProductInfo(product)}
-    )
+    private val adapter =
+        CartProductAdapter(
+            { productName -> presenter.removeItem(productName) },
+            { product -> presenter.showProductInfo(product) }
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         App.appComponent.inject(this)

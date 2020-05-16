@@ -1,4 +1,4 @@
-package com.example.pavel_bodrov_shop.presenter
+package com.example.pavel_bodrov_shop.presenter.view
 
 import com.example.pavel_bodrov_shop.domain.model.Category
 import com.example.pavel_bodrov_shop.domain.model.Product
@@ -18,9 +18,6 @@ interface CatalogView: MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun removeItem(position: Int)
-
-    @StateStrategyType(OneExecutionStateStrategy::class)
-    fun showProductIds(productIds: List<Long>)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun showProductInfo(product: Product)

@@ -8,6 +8,4 @@ interface CartProductsDao {
     fun removeFromCart(productId: Long)
 
     fun getAllProducts():List<Long>
-
-    fun getProductById(productId: Long): Product
 }

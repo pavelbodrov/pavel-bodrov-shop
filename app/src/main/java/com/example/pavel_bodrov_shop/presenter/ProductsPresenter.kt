@@ -3,6 +3,7 @@ package com.example.pavel_bodrov_shop.presenter
 import com.example.pavel_bodrov_shop.domain.MainApi
 import com.example.pavel_bodrov_shop.domain.model.Category
 import com.example.pavel_bodrov_shop.domain.model.Product
+import com.example.pavel_bodrov_shop.presenter.view.ProductsView
 import kotlinx.coroutines.launch
 import moxy.InjectViewState
 import javax.inject.Inject

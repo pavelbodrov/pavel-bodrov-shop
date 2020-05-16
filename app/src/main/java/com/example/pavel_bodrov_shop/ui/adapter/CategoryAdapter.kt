@@ -1,4 +1,4 @@
-package com.example.pavel_bodrov_shop.ui
+package com.example.pavel_bodrov_shop.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -20,12 +20,12 @@ class CategoryAdapter (
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false))
 
     override fun getItemCount(): Int = categories.size
 
-    override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(categories[position])
     }
 

@@ -1,6 +1,7 @@
 package com.example.pavel_bodrov_shop.presenter
 
 import com.example.pavel_bodrov_shop.domain.model.CreateOrderModel
+import com.example.pavel_bodrov_shop.presenter.view.CheckoutView
 import moxy.MvpPresenter
 
 class CheckoutPresenter: MvpPresenter<CheckoutView>() {

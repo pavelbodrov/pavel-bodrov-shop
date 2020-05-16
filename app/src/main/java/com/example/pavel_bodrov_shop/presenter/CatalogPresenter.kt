@@ -3,7 +3,9 @@ import com.example.pavel_bodrov_shop.domain.MainApi
 import com.example.pavel_bodrov_shop.domain.ViewedProductDao
 import com.example.pavel_bodrov_shop.domain.model.Category
 import com.example.pavel_bodrov_shop.domain.model.Product
+import com.example.pavel_bodrov_shop.presenter.view.CatalogView
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import moxy.InjectViewState
 import javax.inject.Inject
 
@@ -23,7 +25,13 @@ class CatalogPresenter @Inject constructor(
     override fun attachView(view: CatalogView?) {
         super.attachView(view)
         val productIds = viewedProductDao.getAllProducts()
-        val products = productIds.map{ viewedProductDao.getProductById(it) }
+        val products = listOf<Product>().toMutableList()
+        productIds.forEach {
+            runBlocking {
+                val product = mainApi.productById(it)
+                products.add(product)
+            }
+        }
         viewState.setLastViewed(products)
     }
 

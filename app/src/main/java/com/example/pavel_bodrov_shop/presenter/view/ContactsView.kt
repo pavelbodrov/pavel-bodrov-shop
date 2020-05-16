@@ -1,4 +1,4 @@
-package com.example.pavel_bodrov_shop.presenter
+package com.example.pavel_bodrov_shop.presenter.view
 
 import moxy.MvpView
 

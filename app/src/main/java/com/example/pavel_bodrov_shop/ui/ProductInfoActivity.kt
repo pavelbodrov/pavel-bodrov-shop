@@ -9,15 +9,15 @@ import com.example.pavel_bodrov_shop.App
 import com.example.pavel_bodrov_shop.R
 import com.example.pavel_bodrov_shop.domain.model.Product
 import com.example.pavel_bodrov_shop.presenter.ProductInfoPresenter
-import com.example.pavel_bodrov_shop.presenter.ProductInfoView
-import kotlinx.android.synthetic.main.category_products_item.view.*
+import com.example.pavel_bodrov_shop.presenter.view.ProductInfoView
 import kotlinx.android.synthetic.main.footer_layout.*
 import kotlinx.android.synthetic.main.header_layout.*
 import kotlinx.android.synthetic.main.product_info_layout.*
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
-class ProductInfoActivity: BaseActivity(), ProductInfoView {
+class ProductInfoActivity: BaseActivity(),
+    ProductInfoView {
 
     @Inject
     lateinit var productInfoPresenter: ProductInfoPresenter
@@ -34,7 +34,6 @@ class ProductInfoActivity: BaseActivity(), ProductInfoView {
         headerAddToCartButton.visibility = View.VISIBLE
 
         headerAddToCartButton.setOnClickListener {
-//            startActivity(Intent(this, CartActivity::class.java))
             presenter.onAddToCartClick(product)
             Toast.makeText(this, "Добавлено", Toast.LENGTH_SHORT).show()
         }

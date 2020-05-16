@@ -10,7 +10,7 @@ import com.example.pavel_bodrov_shop.*
 import com.example.pavel_bodrov_shop.domain.model.Cart
 import com.example.pavel_bodrov_shop.domain.model.Product
 import com.example.pavel_bodrov_shop.presenter.CheckoutPresenter
-import com.example.pavel_bodrov_shop.presenter.CheckoutView
+import com.example.pavel_bodrov_shop.presenter.view.CheckoutView
 import kotlinx.android.synthetic.main.checkout_layout.*
 import kotlinx.android.synthetic.main.footer_layout.*
 import kotlinx.android.synthetic.main.header_layout.*
@@ -31,6 +31,11 @@ class CheckoutActivity : BaseActivity(),
         footerCatalogButton.setOnClickListener { startActivity(Intent(this, CatalogActivity::class.java)) }
         footerCartButton.setOnClickListener { startActivity(Intent(this, CartActivity::class.java)) }
         footerContactsButton.setOnClickListener { startActivity(Intent(this, ContactsActivity::class.java)) }
+
+        checkoutPayButton.setOnClickListener {
+            Toast.makeText(this, "Заказ оформлен", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, CatalogActivity::class.java))
+        }
 
         setListeners()
     }

@@ -1,4 +1,4 @@
-package com.example.pavel_bodrov_shop.ui
+package com.example.pavel_bodrov_shop.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pavel_bodrov_shop.R
 import com.example.pavel_bodrov_shop.domain.model.Product
-import kotlinx.android.synthetic.main.item_product.view.*
+import kotlinx.android.synthetic.main.catalog_lv_product.view.*
 
-class CartProductAdapter (
-    private val onDeleteClick: (product: Product) -> Unit,
+class LastViewedAdapter (
     private val onProductClick: (product: Product) -> Unit
-): RecyclerView.Adapter<CartProductAdapter.ViewHolder>() {
+): RecyclerView.Adapter<LastViewedAdapter.ViewHolder>() {
 
     private var products = listOf<Product>()
 
@@ -21,28 +20,24 @@ class CartProductAdapter (
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartProductAdapter.ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.catalog_lv_product, parent, false))
 
     override fun getItemCount(): Int = products.size
 
-    override fun onBindViewHolder(holder: CartProductAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(products[position])
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product) {
+
             Glide
                 .with(itemView)
                 .load(product.imageUrl)
                 .error(R.mipmap.ic_launcher)
-                .into(itemView.cartProductIv)
-            itemView.cartProductNameTv.text = product.name
-            itemView.cartProductPriceTv.text = "${product.price/1000} т.р."
-
-            itemView.deleteProductIv.setOnClickListener{
-                onDeleteClick(product)
-            }
+                .into(itemView.catalogLastViewedIv)
+            itemView.catalogLastViewedNameTv.text = product.name.split(" ")[0]
 
             itemView.setOnClickListener {
                 onProductClick(product)
